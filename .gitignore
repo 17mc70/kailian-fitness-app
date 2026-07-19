@@ -52,6 +52,11 @@ app.*.map.json
 /.agents/
 /.claude/
 /.reasonix/
+/AGENTS.md
+/CLAUDE.md
+/reasonix.toml
+/wireless.bat
+/WIRELESS_DEV.md
 
 # Secrets and machine-local configuration
 .env
