@@ -14,7 +14,9 @@ import 'quick_workout_screen.dart';
 
 /// AI 教练对话界面
 class AgentChatScreen extends StatefulWidget {
-  const AgentChatScreen({super.key});
+  final String? initialPrompt;
+
+  const AgentChatScreen({super.key, this.initialPrompt});
 
   @override
   State<AgentChatScreen> createState() => AgentChatScreenState();
@@ -30,6 +32,14 @@ class AgentChatScreenState extends State<AgentChatScreen> {
   void initState() {
     super.initState();
     _addWelcome();
+    final initialPrompt = widget.initialPrompt?.trim();
+    if (initialPrompt != null && initialPrompt.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _inputCtrl.text = initialPrompt;
+        _send();
+      });
+    }
   }
 
   void _addWelcome() {
